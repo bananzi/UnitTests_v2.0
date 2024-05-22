@@ -16,5 +16,5 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     
-    - name: MyTest
+    - name: testin
       run: javac src/test/java/org/example/TestMin.java
