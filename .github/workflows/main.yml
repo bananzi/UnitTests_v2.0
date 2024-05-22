@@ -11,4 +11,4 @@ jobs:
       uses: actions/checkout@v1
       
     - name: Check Directory
-      run: javac src/TestMin.java
+      run: javac src/test/java/org/example/TestMin.java
