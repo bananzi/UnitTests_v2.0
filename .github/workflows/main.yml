@@ -1,0 +1,14 @@
+name: MyGitHubActions
+
+on: [push]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Git
+      uses: actions/checkout@v1
+      
+    - name: Check Directory
+      run: javac src/TestMin.java
