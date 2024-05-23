@@ -3,17 +3,16 @@ name: MyGitHubActions
 on: [push]
 
 jobs:
-  testing:
-    runs-on: ubuntu-latest
-
-    steps:
-     - uses: action/checkout@v3
-     - name: Set up JDK 17
-       uses: actions/setup-java@v3
-       with:
-         java-version: '17'
-         distribution: 'temurin'
-         cache: maven
-     - name: Maven Package
-       run: mvn -B clean package -DskipTests
-    
+ testing:
+  runs-on: ubuntu-latest
+  steps:
+   - uses: action/checkout@v3
+   - name: Set up JDK 17
+     uses: actions/setup-java@v3
+     with:
+      java-version: '17'
+      distribution: 'temurin'
+      cache: maven
+   - name: Maven Package
+     run: mvn -B clean package -DskipTests
+  
