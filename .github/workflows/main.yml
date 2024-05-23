@@ -18,3 +18,6 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Testing
+      run: javac ~//UnitTests_v2.0/src/test/java/org/example/AppTest.java
