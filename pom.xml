@@ -32,5 +32,15 @@
     </dependency>
 
   </dependencies>
+  <build>
+  <testResources>
+    <testResource>
+      <directory>src/test/java/org/example</directory>
+      <excludes>
+        <exclude>**/*.java</exclude>
+      </excludes>
+    </testResource>
+  </testResources>
+  </build>
 </project>
 
