@@ -32,8 +32,8 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Test _min
-      if: "github.event.inputs.deployment_target == '_min'"
-      run: mvn clean test test/java/org/example/TestMin
+      #if: "github.event.inputs.deployment_target == '_min'"
+      run: mvn clean test/java/org/example/TestMin
     - name: Test _max
       if: "github.event.inputs.deployment_target == '_min'"
       run: mvn clean test test/java/org/example/TestMax
