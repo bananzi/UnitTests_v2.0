@@ -13,12 +13,17 @@ public class App
         System.out.println("Введите путь к файлу: ");
         String path = in.nextLine();
         in.close();
-
+        File file = new File(path);
+        if (!file.exists() || !file.isFile()) {
+            System.out.println("Вы указали путь не к файлу");
+            System.exit(0);
+        }
 
         Scanner scanner = new Scanner(new File(path));
         List<Integer> arr = new ArrayList<>();
         while (scanner.hasNext()) {
-            arr.add(scanner.nextInt());
+            int temp = scanner.nextInt();
+            arr.add(temp);
         }
 
         scanner.close();
@@ -84,4 +89,5 @@ public class App
             return -1;
         }
     }
+
 }
