@@ -20,4 +20,4 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Testing
-      run: javac ~//UnitTests_v2.0/src/test/java/org/example/AppTest.java
+      run: javac ~/UnitTests_v2.0/src/test/java/org/example/AppTest.java
