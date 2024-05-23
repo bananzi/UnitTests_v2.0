@@ -3,6 +3,18 @@ name: Tests
 on:
   push:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Выберите тест
+        required: true
+        default:
+        type: choice
+        options:
+          - _min
+          - _max
+          - _sum
+          - _mult
 
 jobs:
   build:
@@ -19,5 +31,15 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Test with Maven
-      run: mvn clean test
+    - name: Test _min
+      if: "github.event.inputs.deployment_target == '_min'"
+      run: mvn clean test test/java/org/example/TestMin
+    - name: Test _max
+      if: "github.event.inputs.deployment_target == '_min'"
+      run: mvn clean test test/java/org/example/TestMax
+    - name: Test _sum
+      if: "github.event.inputs.deployment_target == '_min'"
+      run: mvn clean test test/java/org/example/TestSum
+    - name: Test _mult
+      if: "github.event.inputs.deployment_target == '_min'"
+      run: mvn clean test test/java/org/example/TestMult
