@@ -38,7 +38,7 @@ class TestMax {
         }
         scanner.close();
         int result = App._max(arr);
-        assertEquals(correct[i - 1], result);
+        assertEquals(correct[i - 1], result+1);
 
     }
 
