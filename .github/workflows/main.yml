@@ -17,7 +17,7 @@ on:
           - _mult
 
 jobs:
-  build:
+  testing:
 
     runs-on: ubuntu-latest
 
