@@ -33,7 +33,7 @@ jobs:
 
     - name: Test _min
       #if: "github.event.inputs.deployment_target == '_min'"
-      run: mvn clean org.example.TestMin
+      run: mvn clean -Dtest=org.example.TestMin
     - name: Test _max
       if: "github.event.inputs.deployment_target == '_min'"
       run: mvn clean test test/java/org/example/TestMax
