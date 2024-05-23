@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <testSourceDirectory>src/main/test/java/org/example</testSourceDirectory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -29,5 +30,7 @@
       <version>5.8.1</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 </project>
+
