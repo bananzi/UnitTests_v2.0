@@ -2,10 +2,6 @@ package org.example;
 import java.io.File;
 import java.util.*;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main(String[] args) throws Exception{
@@ -27,10 +23,10 @@ public class App
         }
 
         scanner.close();
-        int result1 = App._min(arr);
-        int result2 = App._max(arr);
-        long result3 = App._sum(arr);
-        long result4 = App._mult(arr);
+        int result1 = App.min(arr);
+        int result2 = App.max(arr);
+        long result3 = App.sum(arr);
+        long result4 = App.mult(arr);
         System.out.println("min: " + result1);
         System.out.println("max: " + result2);
         System.out.println("sum: " + result3);
@@ -42,7 +38,7 @@ public class App
     }
 
 
-    static int _min(List<Integer> arr) { //максимальное число
+    static int min(List<Integer> arr) { //максимальное число
         int min = Integer.MAX_VALUE;
         for (int i : arr) {
             if (i < min) {
@@ -52,7 +48,7 @@ public class App
         return min;
     }
 
-    static int _max(List<Integer> arr) { //минимальное число
+    static int max(List<Integer> arr) { //минимальное число
         int max = -1;
         for (int i : arr) {
             if (i > max) {
@@ -63,7 +59,7 @@ public class App
 
     }
 
-    static long _sum(List<Integer> arr) { //сумма всех чисел
+    static long sum(List<Integer> arr) { //сумма всех чисел
         try {
             long sum = 0;
             for (int i : arr) {
@@ -77,7 +73,7 @@ public class App
 
     }
 
-    static long _mult(List<Integer> arr){ //произведение всех чисел
+    static long mult(List<Integer> arr){ //произведение всех чисел
         try {
             long mult = 1;
             for (int i : arr) {

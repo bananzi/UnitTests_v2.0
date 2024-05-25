@@ -37,7 +37,7 @@ class TestMult {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._mult(arr);
+        long result = App.mult(arr);
         if (result == -1) {
             System.out.println("В тесте " + i + " значение произведения больше чем максимальный long");
         } else {
@@ -55,7 +55,7 @@ class TestMult {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._mult(arr);
+        long result = App.mult(arr);
         if (result == -1) {
             System.out.println("В тесте " + i + " значение произведения больше чем максимальный long");
         } else {
@@ -72,7 +72,7 @@ class TestMult {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._mult(arr);
+        long result = App.mult(arr);
         if (result == -1) {
             System.out.println("В тесте " + i + " значение произведения больше чем максимальный long");
         } else {
@@ -90,7 +90,7 @@ class TestMult {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._mult(arr);
+        long result = App.mult(arr);
         if (result == -1) {
             System.out.println("В тесте " + i + " значение произведения больше чем максимальный long");
         } else {
@@ -108,7 +108,7 @@ class TestMult {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._mult(arr);
+        long result = App.mult(arr);
         if (result == -1) {
             System.out.println("В тесте " + i + " значение произведения больше чем максимальный long");
         } else {
@@ -126,7 +126,7 @@ class TestMult {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._mult(arr);
+        long result = App.mult(arr);
         if (result == -1) {
             System.out.println("В тесте " + i + " значение произведения больше чем максимальный long");
         } else {

@@ -37,7 +37,7 @@ class TestSum {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._sum(arr);
+        long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
 
     }
@@ -53,7 +53,7 @@ class TestSum {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._sum(arr);
+        long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
 
     }
@@ -69,7 +69,7 @@ class TestSum {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._sum(arr);
+        long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -84,7 +84,7 @@ class TestSum {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._sum(arr);
+        long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -99,7 +99,7 @@ class TestSum {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._sum(arr);
+        long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -113,7 +113,7 @@ class TestSum {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        long result = App._sum(arr);
+        long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
     }
 }

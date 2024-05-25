@@ -37,7 +37,7 @@ class TestMax {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._max(arr);
+        int result = App.max(arr);
         assertEquals(correct[i - 1], result);
 
     }
@@ -52,7 +52,7 @@ class TestMax {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._max(arr);
+        int result = App.max(arr);
         assertEquals(correct[i - 1], result);
 
     }
@@ -67,7 +67,7 @@ class TestMax {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._max(arr);
+        int result = App.max(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -81,7 +81,7 @@ class TestMax {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._max(arr);
+        int result = App.max(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -95,7 +95,7 @@ class TestMax {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._max(arr);
+        int result = App.max(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -109,7 +109,7 @@ class TestMax {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._max(arr);
+        int result = App.max(arr);
         assertEquals(correct[i - 1], result);
     }
 }

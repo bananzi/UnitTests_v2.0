@@ -37,7 +37,7 @@ class TestMin {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._min(arr);
+        int result = App.min(arr);
         assertEquals(correct[i - 1], result);
 
     }
@@ -53,7 +53,7 @@ class TestMin {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._min(arr);
+        int result = App.min(arr);
         assertEquals(correct[i - 1], result);
 
     }
@@ -69,7 +69,7 @@ class TestMin {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._min(arr);
+        int result = App.min(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -84,7 +84,7 @@ class TestMin {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._min(arr);
+        int result = App.min(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -99,7 +99,7 @@ class TestMin {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._min(arr);
+        int result = App.min(arr);
         assertEquals(correct[i - 1], result);
     }
 
@@ -114,7 +114,7 @@ class TestMin {
             arr.add(scanner.nextInt());
         }
         scanner.close();
-        int result = App._min(arr);
+        int result = App.min(arr);
         assertEquals(correct[i - 1], result);
     }
 }
