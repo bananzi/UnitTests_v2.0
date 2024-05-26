@@ -52,3 +52,4 @@ jobs:
           && github.event.inputs.deployment_target != 'sum' && github.event.inputs.deployment_target != 'mult' 
           && github.event.inputs.deployment_target !='scanFile'
         run: mvn clean test
+        echo: "kek"
