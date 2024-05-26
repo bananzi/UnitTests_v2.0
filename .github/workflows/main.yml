@@ -11,10 +11,11 @@ on:
         default:
         type: choice
         options:
-          - _min
-          - _max
-          - _sum
-          - _mult
+          - min
+          - max
+          - sum
+          - mult
+          - scanFile
 
 jobs:
   testing:
@@ -31,19 +32,23 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests
 
-      - name: Test _min
-        if: "github.event.inputs.deployment_target == '_min'"
+      - name: Test min
+        if: "github.event.inputs.deployment_target == 'min'"
         run: mvn clean test -Dtest=org.example.TestMin
-      - name: Test _max
-        if: "github.event.inputs.deployment_target == '_max'"
+      - name: Test max
+        if: "github.event.inputs.deployment_target == 'max'"
         run: mvn clean test -Dtest=org.example.TestMax
-      - name: Test _sum
-        if: "github.event.inputs.deployment_target == '_sum'"
+      - name: Test sum
+        if: "github.event.inputs.deployment_target == 'sum'"
         run: mvn clean test -Dtest=org.example.TestSum
-      - name: Test _mult
-        if: "github.event.inputs.deployment_target == '_mult'"
+      - name: Test mult
+        if: "github.event.inputs.deployment_target == 'mult'"
         run: mvn clean test -Dtest=org.example.TestMult
+      - name: Test scanFile
+        if: "github.event.inputs.deployment_target =='scanFile'"
+        run: mvn clean test -Dtest=org.example.TestScanFile
       - name: AllTest
-        if: github.event.inputs.deployment_target != '_min' && github.event.inputs.deployment_target != '_max' 
-          && github.event.inputs.deployment_target != '_sum' && github.event.inputs.deployment_target != '_mult'
+        if: github.event.inputs.deployment_target != 'min' && github.event.inputs.deployment_target != 'max' 
+          && github.event.inputs.deployment_target != 'sum' && github.event.inputs.deployment_target != 'mult' 
+          && github.event.inputs.deployment_target !='scanFile'
         run: mvn clean test

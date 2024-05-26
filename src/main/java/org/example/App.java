@@ -1,42 +1,55 @@
 package org.example;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
-public class App 
-{
-    public static void main(String[] args) throws Exception{
-        Scanner in = new Scanner(System.in);
+public class App {
+    public static void main(String[] args) {
         System.out.println("Введите путь к файлу: ");
+        Scanner in = new Scanner(System.in);
         String path = in.nextLine();
         in.close();
-        File file = new File(path);
-        if (!file.exists() || !file.isFile()) {
-            System.out.println("Вы указали путь не к файлу");
+
+        Scanner scanner = null;
+        try {
+            scanner = scanFile(path);
+        } catch (FileNotFoundException e) {
+            System.out.println("Вы указали путь не к файлу или его не существует");
             System.exit(0);
         }
 
-        Scanner scanner = new Scanner(new File(path));
         List<Integer> arr = new ArrayList<>();
         while (scanner.hasNext()) {
             int temp = scanner.nextInt();
             arr.add(temp);
         }
-
         scanner.close();
+
         int result1 = App.min(arr);
         int result2 = App.max(arr);
         long result3 = App.sum(arr);
         long result4 = App.mult(arr);
+
         System.out.println("min: " + result1);
         System.out.println("max: " + result2);
-        System.out.println("sum: " + result3);
+        if (result3 == -1) {
+            System.out.println("Сумма больше чем long");
+        } else {
+            System.out.println("sum: " + result3);
+        }
         if (result4 == -1) {
             System.out.println("Произведение больше чем long");
-        }else {
+        } else {
             System.out.println("mult: " + result4);
         }
     }
 
+    static Scanner scanFile(String path) throws FileNotFoundException {
+        Scanner scanner;
+        scanner = new Scanner(new File(path));
+        return scanner;
+    }
 
     static int min(List<Integer> arr) { //максимальное число
         int min = Integer.MAX_VALUE;
@@ -73,7 +86,7 @@ public class App
 
     }
 
-    static long mult(List<Integer> arr){ //произведение всех чисел
+    static long mult(List<Integer> arr) { //произведение всех чисел
         try {
             long mult = 1;
             for (int i : arr) {
