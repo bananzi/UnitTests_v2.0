@@ -64,6 +64,10 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: "Всё ок"
 
+
+      - name: qq
+        run: echo $successMin
+
       - name: CheckMin
         #if: env.successMin == 'false'
         uses: appleboy/telegram-action@master
