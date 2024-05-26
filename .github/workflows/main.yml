@@ -62,6 +62,7 @@ jobs:
 
       - name: TestScanFile
         run: |
+          set +e
           mvn clean test -Dtest=org.example.MyTest
           if [ $? -eq 0 ]; then
             echo "successScan=true" >> $GITHUB_ENV
