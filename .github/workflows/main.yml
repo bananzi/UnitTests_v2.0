@@ -67,44 +67,105 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: "TestMin не пройден"
-#      - name: CheckMin
-#        if: "$successMin" = "false"
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: "TestMin не пройден"
-#
-#      - name: CheckMax
-#        if: env.successMax == 'false'
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: "TestMax не пройден"
-#
-#      - name: CheckSum
-#        if: env.successSum == 'false'
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: "TestSum не пройден"
-#
-#      - name: CheckMult
-#        if: env.successMult == 'false'
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: "TestMult не пройден"
-#
-#      - name: Check scanFile
-#        env:
-#          TEST_RESULT: ${{ steps.run-tests.outputs.test_result }}
-#        if: ${{ env.TEST_RESULT != 0 }}
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: "TestScanFile не пройден"
+
+  testingMax:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 21.0.2
+        uses: actions/setup-java@v1
+        with:
+          java-version: '21.0.2'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -DskipTests
+
+      - name: TestMax
+        run: mvn clean test -Dtest=org.example.TestMax
+
+      - name: CheckMax
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestMax не пройден"
+
+  testingSum:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 21.0.2
+        uses: actions/setup-java@v1
+        with:
+          java-version: '21.0.2'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -DskipTests
+
+      - name: TestSum
+        run: mvn clean test -Dtest=org.example.TestSum
+
+      - name: CheckSum
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestSum не пройден"
+
+  testingMult:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 21.0.2
+        uses: actions/setup-java@v1
+        with:
+          java-version: '21.0.2'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -DskipTests
+
+      - name: TestMult
+        run: mvn clean test -Dtest=org.example.TestMult
+
+      - name: CheckMult
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestMult не пройден"
+
+  testingScan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 21.0.2
+        uses: actions/setup-java@v1
+        with:
+          java-version: '21.0.2'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -DskipTests
+
+      - name: TestScan
+        run: mvn clean test -Dtest=org.example.MyTest
+
+      - name: Check scanFile
+        env:
+          TEST_RESULT: ${{ steps.run-tests.outputs.test_result }}
+        if: ${{ env.TEST_RESULT != 0 }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestScanFile не пройден"

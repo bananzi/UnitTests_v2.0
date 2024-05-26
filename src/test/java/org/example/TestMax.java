@@ -14,7 +14,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestMax {
-    int[] correct = {87, 990710435, 997710664, 999966160, 999994816, 999999231};
+    int[] correct = {870, 990710435, 997710664, 999966160, 999994816, 999999231};
     long start;
     int i;
 
