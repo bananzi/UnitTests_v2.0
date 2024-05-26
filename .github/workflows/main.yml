@@ -161,9 +161,8 @@ jobs:
         run: mvn clean test -Dtest=org.example.MyTest
 
       - name: Check scanFile
-        env:
-          TEST_RESULT: ${{ steps.run-tests.outputs.test_result }}
-        if: ${{ env.TEST_RESULT != 0 }}
+
+        if: failure()
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
