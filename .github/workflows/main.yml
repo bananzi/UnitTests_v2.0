@@ -3,19 +3,6 @@ name: Tests
 on:
   push:
   pull_request:
-  workflow_dispatch:
-    inputs:
-      deployment_target:
-        description: Выберите тест
-        required: true
-        default:
-        type: choice
-        options:
-          - min
-          - max
-          - sum
-          - mult
-          - scanFile
 
 jobs:
   testing:
@@ -29,28 +16,21 @@ jobs:
         with:
           java-version: '21.0.2'
           cache: maven
+
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests
 
       - name: Test min
-        if: "github.event.inputs.deployment_target == 'min'"
         run: mvn clean test -Dtest=org.example.TestMin
+
       - name: Test max
-        if: "github.event.inputs.deployment_target == 'max'"
         run: mvn clean test -Dtest=org.example.TestMax
+
       - name: Test sum
-        if: "github.event.inputs.deployment_target == 'sum'"
         run: mvn clean test -Dtest=org.example.TestSum
+
       - name: Test mult
-        if: "github.event.inputs.deployment_target == 'mult'"
         run: mvn clean test -Dtest=org.example.TestMult
+
       - name: Test scanFile
-        if: "github.event.inputs.deployment_target =='scanFile'"
         run: mvn clean test -Dtest=org.example.TestScanFile
-      - name: AllTest
-        if: github.event.inputs.deployment_target != 'min' && github.event.inputs.deployment_target != 'max' 
-          && github.event.inputs.deployment_target != 'sum' && github.event.inputs.deployment_target != 'mult' 
-          && github.event.inputs.deployment_target !='scanFile'
-        run: |
-          mvn clean test
-          #тут пишем для бота
