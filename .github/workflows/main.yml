@@ -66,11 +66,11 @@ jobs:
           if [ $? -eq 0 ]; then
             echo "successScan=true" >> $GITHUB_ENV
           else
-                    uses: appleboy/telegram-action@master
-                    with:
-                      to: ${{ secrets.TELEGRAM_CHAT_ID }}
-                      token: ${{ secrets.TELEGRAM_TOKEN }}
-                      message: "TestScanFile не пройден"
+            uses: appleboy/telegram-action@master
+            with:
+              to: ${{ secrets.TELEGRAM_CHAT_ID }}
+              token: ${{ secrets.TELEGRAM_TOKEN }}
+              message: "TestScanFile не пройден"
           fi
         continue-on-error: true
 
