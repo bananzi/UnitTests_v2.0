@@ -2,7 +2,8 @@ package org.example;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,9 +27,11 @@ class TestSum {
     public void end() {
         System.out.println("При " + (int) Math.pow(10, i) + " чисел, время работы: " + (System.currentTimeMillis() - start) + " мс");
     }
-    @Test
-    void Test_sum1() throws FileNotFoundException {
-        i = 1;
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void Test_sum1(int number) throws FileNotFoundException {
+        i = number;
         String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
 
         Scanner scanner = new Scanner(new File(file));
@@ -40,80 +43,5 @@ class TestSum {
         long result = App.sum(arr);
         assertEquals(correct[i - 1], result);
 
-    }
-
-    @Test
-    void Test_sum2() throws FileNotFoundException {
-        i = 2;
-        String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
-
-        Scanner scanner = new Scanner(new File(file));
-        List<Integer> arr = new ArrayList<>();
-        while (scanner.hasNext()) {
-            arr.add(scanner.nextInt());
-        }
-        scanner.close();
-        long result = App.sum(arr);
-        assertEquals(correct[i - 1], result);
-
-    }
-
-    @Test
-    void Test_sum3() throws FileNotFoundException {
-        i = 3;
-        String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
-
-        Scanner scanner = new Scanner(new File(file));
-        List<Integer> arr = new ArrayList<>();
-        while (scanner.hasNext()) {
-            arr.add(scanner.nextInt());
-        }
-        scanner.close();
-        long result = App.sum(arr);
-        assertEquals(correct[i - 1], result);
-    }
-
-    @Test
-    void Test_sum4() throws FileNotFoundException {
-        i = 4;
-        String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
-
-        Scanner scanner = new Scanner(new File(file));
-        List<Integer> arr = new ArrayList<>();
-        while (scanner.hasNext()) {
-            arr.add(scanner.nextInt());
-        }
-        scanner.close();
-        long result = App.sum(arr);
-        assertEquals(correct[i - 1], result);
-    }
-
-    @Test
-    void Test_sum5() throws FileNotFoundException {
-        i = 5;
-        String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
-
-        Scanner scanner = new Scanner(new File(file));
-        List<Integer> arr = new ArrayList<>();
-        while (scanner.hasNext()) {
-            arr.add(scanner.nextInt());
-        }
-        scanner.close();
-        long result = App.sum(arr);
-        assertEquals(correct[i - 1], result);
-    }
-
-    @Test
-    void Test_sum6() throws FileNotFoundException {
-        i = 6;
-        String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
-        Scanner scanner = new Scanner(new File(file));
-        List<Integer> arr = new ArrayList<>();
-        while (scanner.hasNext()) {
-            arr.add(scanner.nextInt());
-        }
-        scanner.close();
-        long result = App.sum(arr);
-        assertEquals(correct[i - 1], result);
     }
 }
