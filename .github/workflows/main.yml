@@ -86,42 +86,42 @@ jobs:
       - name: qq
         run: echo $successScan
 
-      - name: CheckMin
-        if: "$successMin" = "false"
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "TestMin не пройден"
-
-      - name: CheckMax
-        if: env.successMax == 'false'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "TestMax не пройден"
-
-      - name: CheckSum
-        if: env.successSum == 'false'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "TestSum не пройден"
-
-      - name: CheckMult
-        if: env.successMult == 'false'
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "TestMult не пройден"
-
-      - name: Check scanFile
-        if: env.successScan == false
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "TestScanFile не пройден"
+#      - name: CheckMin
+#        if: "$successMin" = "false"
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: "TestMin не пройден"
+#
+#      - name: CheckMax
+#        if: env.successMax == 'false'
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: "TestMax не пройден"
+#
+#      - name: CheckSum
+#        if: env.successSum == 'false'
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: "TestSum не пройден"
+#
+#      - name: CheckMult
+#        if: env.successMult == 'false'
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: "TestMult не пройден"
+#
+#      - name: Check scanFile
+#        if: env.successScan == false
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: "TestScanFile не пройден"
