@@ -51,5 +51,7 @@ jobs:
         if: github.event.inputs.deployment_target != 'min' && github.event.inputs.deployment_target != 'max' 
           && github.event.inputs.deployment_target != 'sum' && github.event.inputs.deployment_target != 'mult' 
           && github.event.inputs.deployment_target !='scanFile'
-        run: mvn clean test
-        echo: "kek"
+        run: |
+          echo "kek1"
+          mvn clean test
+          echo "kek2"
