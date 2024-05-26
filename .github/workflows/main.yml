@@ -67,6 +67,7 @@ jobs:
           mvn clean test --fail-at-end -Dtest=org.example.MyTest
           if grep -q 'FAILURES' target/surefire-reports/*.txt; then
           export successScan='false'
+          echo "kekekekekekekekekekekekekekekekkeekekekekekeke"
           exit 1
           fi
         continue-on-error: true

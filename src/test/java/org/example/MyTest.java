@@ -15,6 +15,6 @@ public class MyTest {
 
         FileNotFoundException thrown = assertThrows(FileNotFoundException.class, () -> App.scanFile(path));
 
-        assertEquals("qq (o such file or directory)", thrown.getMessage());
+        assertEquals("qq (No such file or directory)", thrown.getMessage());
     }
 }
