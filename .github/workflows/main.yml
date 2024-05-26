@@ -82,7 +82,7 @@ jobs:
 
 
       - name: qq
-        run: echo $successMin
+        run: echo $successScan
 
       - name: CheckMin
         if: env.successMin == 'false'
