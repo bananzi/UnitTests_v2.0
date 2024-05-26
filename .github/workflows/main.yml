@@ -1,4 +1,10 @@
 name: Tests
+env:
+  successMin: 'true'
+  successMax: 'true'
+  successSum: 'true'
+  successMult: 'true'
+  successScan: 'true'
 
 on:
   push:
@@ -21,19 +27,34 @@ jobs:
         run: mvn -B package --file pom.xml -DskipTests
 
       - name: TestMin
-        run: mvn clean test -Dtest=org.example.TestMin
+        run: |
+          mvn clean test --fail-at-end -Dtest=org.example.TestMin
+          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
+          $successMin = 'false'
+          exit 1
+          fi
+        continue-on-error: true
 
       - name: TestMax
-        run: mvn clean test -Dtest=org.example.TestMax
+        run: |
+          mvn clean test --fail-at-end -Dtest=org.example.TestMax
+          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
+          $successMax = 'false'
+          exit 1
+          fi
+        continue-on-error: true
 
       - name: TestSum
-        run: mvn clean test -Dtest=org.example.TestSum
+        run: mvn clean test --fail-at-end -Dtest=org.example.TestSum
+        continue-on-error: true
 
       - name: TestMult
-        run: mvn clean test -Dtest=org.example.TestMult
+        run: mvn clean test --fail-at-end -Dtest=org.example.TestMult
+        continue-on-error: true
 
       - name: TestScanFile
-        run: mvn clean test -Dtest=org.example.MyTest
+        run: mvn clean test --fail-at-end -Dtest=org.example.MyTest
+        continue-on-error: true
 
       - name: CheckUpTelegram
         if: success()
@@ -44,7 +65,7 @@ jobs:
           message: "Всё ок"
 
       - name: CheckMin
-        if: steps.TestMin.outcome == 'failure'
+        if: env.successMin == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -52,7 +73,7 @@ jobs:
           message: "TestMin не пройден"
 
       - name: CheckMax
-        if: steps.TestMax.outcome == 'failure'
+        if: env.successMax == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
