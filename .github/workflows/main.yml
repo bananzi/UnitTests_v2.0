@@ -20,19 +20,19 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests
 
-      - name: Test min
+      - name: TestMin
         run: mvn clean test -Dtest=org.example.TestMin
 
-      - name: Test max
+      - name: TestMax
         run: mvn clean test -Dtest=org.example.TestMax
 
-      - name: Test sum
+      - name: TestSum
         run: mvn clean test -Dtest=org.example.TestSum
 
-      - name: Test mult
+      - name: TestMult
         run: mvn clean test -Dtest=org.example.TestMult
 
-      - name: Test scanFile
+      - name: TestScanFile
         run: mvn clean test -Dtest=org.example.MyTest
 
       - name: CheckUpTelegram
@@ -42,3 +42,43 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: "Всё ок"
+
+      - name: CheckMin
+        if: steps.TestMin.outcome == 'failure'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestMin не пройден"
+
+      - name: CheckMax
+        if: steps.TestMax.outcome == 'failure'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestMax не пройден"
+
+      - name: CheckSum
+        if: steps.TestSum.outcome == 'failure'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestSum не пройден"
+
+      - name: CheckMult
+        if: steps.TestMult.outcome == 'failure'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestMult не пройден"
+
+      - name: Check scanFile
+        if: steps.TestScanFile.outcome == 'failure'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestScanFile не пройден"

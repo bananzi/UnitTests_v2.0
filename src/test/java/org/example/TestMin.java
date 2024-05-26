@@ -14,7 +14,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestMin {
-    int[] correct = {4, 6878459, 173072, 10939, 3130, 128};
+    int[] correct = {40, 6878459, 173072, 10939, 3130, 128};
     long start;
     int i;
 

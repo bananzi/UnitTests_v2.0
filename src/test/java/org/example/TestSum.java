@@ -14,7 +14,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestSum {
-    long[] correct = {482, 52362985927L, 496163501466L, 5000886374086L, 49837291595353L, 499800189662153L};
+    long[] correct = {4820, 52362985927L, 496163501466L, 5000886374086L, 49837291595353L, 499800189662153L};
     long start;
 
     int i;
