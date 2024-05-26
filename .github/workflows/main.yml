@@ -73,7 +73,7 @@ jobs:
           message: "TestMin не пройден"
 
       - name: CheckMax
-        if: env.successMax == 'false'
+        if: env.successMax == 'true'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
