@@ -34,3 +34,11 @@ jobs:
 
       - name: Test scanFile
         run: mvn clean test -Dtest=org.example.MyTest
+
+      - name: CheckUpTelegram
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "Всё ок"
