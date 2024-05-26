@@ -29,46 +29,50 @@ jobs:
       - name: TestMin
         run: |
           mvn clean test --fail-at-end -Dtest=org.example.TestMin
-          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          export successMin='false'
-          exit 1
+          if [ $? -eq 0 ]; then
+            echo "successMin=true" >> $GITHUB_ENV
+          else
+            echo "successMin=false" >> $GITHUB_ENV
           fi
         continue-on-error: true
 
       - name: TestMax
         run: |
           mvn clean test --fail-at-end -Dtest=org.example.TestMax
-          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          export successMax='false'
-          exit 1
+          if [ $? -eq 0 ]; then
+            echo "successMax=true" >> $GITHUB_ENV
+          else
+            echo "successMax=false" >> $GITHUB_ENV
           fi
         continue-on-error: true
 
       - name: TestSum
         run: |
-          mvn clean test --fail-at-end -Dtest=org.example.TestSum
-          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          export successSum='false'
-          exit 1
+          mvn clean test -Dtest=org.example.TestSum
+          if [ $? -eq 0 ]; then
+            echo "successSum=true" >> $GITHUB_ENV
+          else
+            echo "successSum=false" >> $GITHUB_ENV
           fi
         continue-on-error: true
 
       - name: TestMult
         run: |
-          mvn clean test --fail-at-end -Dtest=org.example.TestMult
-          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          export successMult='false'
-          exit 1
+          mvn clean test -Dtest=org.example.TestMult
+          if [ $? -eq 0 ]; then
+            echo "successMult=true" >> $GITHUB_ENV
+          else
+            echo "successMult=false" >> $GITHUB_ENV
           fi
         continue-on-error: true
 
       - name: TestScanFile
         run: |
-          mvn clean test --fail-at-end -Dtest=org.example.MyTest
-          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          export successScan='false'
-          echo "kekekekekekekekekekekekekekekekkeekekekekekeke"
-          exit 1
+          mvn clean test -Dtest=org.example.MyTest
+          if [ $? -eq 0 ]; then
+            echo "successScan=true" >> $GITHUB_ENV
+          else
+            echo "successScan=false" >> $GITHUB_ENV
           fi
         continue-on-error: true
 
