@@ -62,17 +62,8 @@ jobs:
 
       - name: TestScanFile
         run: |
-          set +e
           mvn clean test -Dtest=org.example.MyTest
-          if [ $? -eq 0 ]; then
-            echo "successScan=true" >> $GITHUB_ENV
-          else
-            uses: appleboy/telegram-action@master
-            with:
-              to: ${{ secrets.TELEGRAM_CHAT_ID }}
-              token: ${{ secrets.TELEGRAM_TOKEN }}
-              message: "TestScanFile не пройден"
-          fi
+          trap 'uses: appleboy/telegram-action@master with: to: ${{ secrets.TELEGRAM_CHAT_ID }} token: ${{ secrets.TELEGRAM_TOKEN }} message: "TestScanFile не пройден"' ERR
         continue-on-error: true
 
       - name: CheckUpTelegram
