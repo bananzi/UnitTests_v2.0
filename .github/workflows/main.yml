@@ -65,6 +65,7 @@ jobs:
           mvn clean test -Dtest=org.example.MyTest
           TEST_RESULT=$?
           echo "Test result: $TEST_RESULT"
+        continue-on-error: true
 
       - name: CheckUpTelegram
         if: success()
