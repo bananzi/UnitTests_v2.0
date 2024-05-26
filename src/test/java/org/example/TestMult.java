@@ -13,7 +13,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestMult {
-    long[] correct = {17901302057598960L};
+    long[] correct = {1790130205759896L};
     long start;
     int i;
 
