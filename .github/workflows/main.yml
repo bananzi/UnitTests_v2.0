@@ -21,51 +21,19 @@ jobs:
         run: mvn -B package --file pom.xml -DskipTests
 
       - name: TestMin
-        run: |
-          mvn clean test --fail-at-end -Dtest=org.example.TestMin
-          if [ $? -eq 0 ]; then
-            echo "successMin=true" >> $GITHUB_ENV
-          else
-            echo "successMin=false" >> $GITHUB_ENV
-          fi
-        continue-on-error: true
+        run: mvn clean test --fail-at-end -Dtest=org.example.TestMin
 
       - name: TestMax
-        run: |
-          mvn clean test --fail-at-end -Dtest=org.example.TestMax
-          if [ $? -eq 0 ]; then
-            echo "successMax=true" >> $GITHUB_ENV
-          else
-            echo "successMax=false" >> $GITHUB_ENV
-          fi
-        continue-on-error: true
+        run: mvn clean test --fail-at-end -Dtest=org.example.TestMax
 
       - name: TestSum
-        run: |
-          mvn clean test -Dtest=org.example.TestSum
-          if [ $? -eq 0 ]; then
-            echo "successSum=true" >> $GITHUB_ENV
-          else
-            echo "successSum=false" >> $GITHUB_ENV
-          fi
-        continue-on-error: true
+        run: mvn clean test -Dtest=org.example.TestSum
 
       - name: TestMult
-        run: |
-          mvn clean test -Dtest=org.example.TestMult
-          if [ $? -eq 0 ]; then
-            echo "successMult=true" >> $GITHUB_ENV
-          else
-            echo "successMult=false" >> $GITHUB_ENV
-          fi
-        continue-on-error: true
+        run: mvn clean test -Dtest=org.example.TestMult
 
       - name: TestScan
-        run: |
-          mvn clean test -Dtest=org.example.MyTest
-          TEST_RESULT=$?
-          echo "Test result: $TEST_RESULT"
-        continue-on-error: true
+        run: mvn clean test -Dtest=org.example.MyTest
 
       - name: CheckUpTelegram
         if: success()
@@ -74,10 +42,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: "Всё ок"
-
-
-      - name: qq
-        run: echo $successScan
 
 #      - name: CheckMin
 #        if: "$successMin" = "false"
@@ -111,12 +75,12 @@ jobs:
 #          token: ${{ secrets.TELEGRAM_TOKEN }}
 #          message: "TestMult не пройден"
 #
-      - name: Check scanFile
-        env:
-          TEST_RESULT: ${{ steps.run-tests.outputs.test_result }}
-        if: ${{ env.TEST_RESULT != 0 }}
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "TestScanFile не пройден"
+#      - name: Check scanFile
+#        env:
+#          TEST_RESULT: ${{ steps.run-tests.outputs.test_result }}
+#        if: ${{ env.TEST_RESULT != 0 }}
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: "TestScanFile не пройден"
