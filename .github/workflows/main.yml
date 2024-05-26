@@ -60,11 +60,10 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: TestScanFile
+      - name: TestScan
         run: |
           mvn clean test -Dtest=org.example.MyTest
-          trap 'uses: appleboy/telegram-action@master with: to: ${{ secrets.TELEGRAM_CHAT_ID }} token: ${{ secrets.TELEGRAM_TOKEN }} message: "TestScanFile не пройден"' ERR
-        continue-on-error: true
+          testScan=$?
 
       - name: CheckUpTelegram
         if: success()
@@ -110,10 +109,10 @@ jobs:
 #          token: ${{ secrets.TELEGRAM_TOKEN }}
 #          message: "TestMult не пройден"
 #
-#      - name: Check scanFile
-#        if: env.successScan == false
-#        uses: appleboy/telegram-action@master
-#        with:
-#          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-#          token: ${{ secrets.TELEGRAM_TOKEN }}
-#          message: "TestScanFile не пройден"
+      - name: Check scanFile
+        if: ${{ testScan != 0 }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "TestScanFile не пройден"
