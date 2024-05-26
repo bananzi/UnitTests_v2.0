@@ -30,7 +30,7 @@ jobs:
         run: |
           mvn clean test --fail-at-end -Dtest=org.example.TestMin
           if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          $successMin = 'false'
+          export successMin='false'
           exit 1
           fi
         continue-on-error: true
@@ -39,21 +39,36 @@ jobs:
         run: |
           mvn clean test --fail-at-end -Dtest=org.example.TestMax
           if grep -q 'FAILURES' target/surefire-reports/*.txt; then
-          $successMax = 'false'
+          export successMax='false'
           exit 1
           fi
         continue-on-error: true
 
       - name: TestSum
-        run: mvn clean test --fail-at-end -Dtest=org.example.TestSum
+        run: |
+          mvn clean test --fail-at-end -Dtest=org.example.TestSum
+          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
+          export successSum='false'
+          exit 1
+          fi
         continue-on-error: true
 
       - name: TestMult
-        run: mvn clean test --fail-at-end -Dtest=org.example.TestMult
+        run: |
+          mvn clean test --fail-at-end -Dtest=org.example.TestMult
+          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
+          export successMult='false'
+          exit 1
+          fi
         continue-on-error: true
 
       - name: TestScanFile
-        run: mvn clean test --fail-at-end -Dtest=org.example.MyTest
+        run: |
+          mvn clean test --fail-at-end -Dtest=org.example.MyTest
+          if grep -q 'FAILURES' target/surefire-reports/*.txt; then
+          export successScan='false'
+          exit 1
+          fi
         continue-on-error: true
 
       - name: CheckUpTelegram
@@ -69,7 +84,7 @@ jobs:
         run: echo $successMin
 
       - name: CheckMin
-        #if: env.successMin == 'false'
+        if: env.successMin == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -77,7 +92,7 @@ jobs:
           message: "TestMin не пройден"
 
       - name: CheckMax
-        if: env.successMax == 'true'
+        if: env.successMax == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -85,7 +100,7 @@ jobs:
           message: "TestMax не пройден"
 
       - name: CheckSum
-        if: steps.TestSum.outcome == 'failure'
+        if: env.successSum == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -93,7 +108,7 @@ jobs:
           message: "TestSum не пройден"
 
       - name: CheckMult
-        if: steps.TestMult.outcome == 'failure'
+        if: env.successMult == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -101,7 +116,7 @@ jobs:
           message: "TestMult не пройден"
 
       - name: Check scanFile
-        if: steps.TestScanFile.outcome == 'failure'
+        if: env.successScan == 'false'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
