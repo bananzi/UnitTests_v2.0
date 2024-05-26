@@ -24,7 +24,7 @@ jobs:
         run: mvn clean test -Dtest=org.example.TestMin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Handle Unit Test Failure
+      - name: CheckMin
         if: failure()
         uses: appleboy/telegram-action@master
         with:
