@@ -1,10 +1,4 @@
 name: Tests
-env:
-  successMin: 'true'
-  successMax: 'true'
-  successSum: 'true'
-  successMult: 'true'
-  successScan: 'true'
 
 on:
   push:
@@ -77,19 +71,21 @@ jobs:
         continue-on-error: true
 
       - name: CheckUpTelegram
-        if: success()
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "Всё ок"
+        run: |
+          if [ "$successSum" = "true" ] && [ "$successMult" = "true" ] && [ "$successScan" = "true" ] &&
+            [ "$successMin" = "true" ] && [ "$successMax" = "true" ];then
+            uses: appleboy/telegram-action@master
+            with:
+              to: ${{ secrets.TELEGRAM_CHAT_ID }}
+              token: ${{ secrets.TELEGRAM_TOKEN }}
+              message: "Всё ок"
 
 
       - name: qq
         run: echo $successScan
 
       - name: CheckMin
-        if: env.successMin == 'false'
+        if: "$successMin" = "false"
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -121,7 +117,7 @@ jobs:
           message: "TestMult не пройден"
 
       - name: Check scanFile
-        if: env.successScan == 'false'
+        if: env.successScan == false
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
