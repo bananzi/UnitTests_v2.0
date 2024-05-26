@@ -66,20 +66,22 @@ jobs:
           if [ $? -eq 0 ]; then
             echo "successScan=true" >> $GITHUB_ENV
           else
-            echo "successScan=false" >> $GITHUB_ENV
+                    uses: appleboy/telegram-action@master
+                    with:
+                      to: ${{ secrets.TELEGRAM_CHAT_ID }}
+                      token: ${{ secrets.TELEGRAM_TOKEN }}
+                      message: "TestScanFile не пройден"
           fi
         continue-on-error: true
 
       - name: CheckUpTelegram
-        run: |
-          if [ "$successSum" = "true" ] && [ "$successMult" = "true" ] && [ "$successScan" = "true" ] &&
-            [ "$successMin" = "true" ] && [ "$successMax" = "true" ];then
-            uses: appleboy/telegram-action@master
-            with:
-              to: ${{ secrets.TELEGRAM_CHAT_ID }}
-              token: ${{ secrets.TELEGRAM_TOKEN }}
-              message: "Всё ок"
-          fi
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "Всё ок"
+
 
       - name: qq
         run: echo $successScan
