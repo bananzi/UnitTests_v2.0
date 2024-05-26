@@ -110,7 +110,9 @@ jobs:
 #          message: "TestMult не пройден"
 #
       - name: Check scanFile
-        if: ${{ TEST_RESULT != 0 }}
+        env:
+          TEST_RESULT: ${{ steps.run-tests.outputs.test_result }}
+        if: ${{ env.TEST_RESULT != 0 }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
