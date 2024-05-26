@@ -63,7 +63,7 @@ jobs:
       - name: TestScan
         run: |
           mvn clean test -Dtest=org.example.MyTest
-          testScan=$?
+          TEST_RESULT=$?
 
       - name: CheckUpTelegram
         if: success()
@@ -110,7 +110,7 @@ jobs:
 #          message: "TestMult не пройден"
 #
       - name: Check scanFile
-        if: ${{ testScan != 0 }}
+        if: ${{ TEST_RESULT != 0 }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
