@@ -33,4 +33,4 @@ jobs:
         run: mvn clean test -Dtest=org.example.TestMult
 
       - name: Test scanFile
-        run: mvn clean test -Dtest=org.example.Mytest
+        run: mvn clean test -Dtest=org.example.MyTest
