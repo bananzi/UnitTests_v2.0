@@ -29,7 +29,7 @@ class TestMult {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
-    void Test_mult1(int number) throws Exception {
+    void testMult(int number) throws Exception {
         i = number;
         String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
 

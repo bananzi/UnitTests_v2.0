@@ -30,7 +30,7 @@ class TestMin {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
-    void Test_min1(int number) throws FileNotFoundException {
+    void testMin(int number) throws FileNotFoundException {
         i = number;
         String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
         Scanner scanner = new Scanner(new File(file));

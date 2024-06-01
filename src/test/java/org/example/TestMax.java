@@ -30,7 +30,7 @@ class TestMax {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
-    void Test_max1(int number) throws FileNotFoundException {
+    void testMax(int number) throws FileNotFoundException {
         i = number;
         String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
         Scanner scanner = new Scanner(new File(file));

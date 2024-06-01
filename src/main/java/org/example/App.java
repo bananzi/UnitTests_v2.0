@@ -76,11 +76,10 @@ public class App {
         try {
             long sum = 0;
             for (int i : arr) {
-                sum += i;
-                if (sum < 0) throw new Exception();
+                sum = Math.addExact(sum, i);
             }
             return sum;
-        } catch (Exception e) {
+        } catch (ArithmeticException e) {
             return -1;
         }
 
@@ -90,11 +89,10 @@ public class App {
         try {
             long mult = 1;
             for (int i : arr) {
-                mult *= i;
-                if (mult < 0) throw new Exception();
+                mult = Math.multiplyExact(i, mult);
             }
             return mult;
-        } catch (Exception e) {
+        } catch (ArithmeticException e) {
             return -1;
         }
     }

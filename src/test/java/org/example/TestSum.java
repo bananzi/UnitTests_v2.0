@@ -30,7 +30,7 @@ class TestSum {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
-    void Test_sum1(int number) throws FileNotFoundException {
+    void testSum(int number) throws FileNotFoundException {
         i = number;
         String file = "src/test/java/org/example/TestInput/test" + i + ".txt";
 
